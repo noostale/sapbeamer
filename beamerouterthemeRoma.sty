@@ -43,7 +43,7 @@
 \defbeamertemplate*{headline}{Roma theme}{
   \ifnum\thepage>1\relax
     % Upper separation line
-    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+    \begin{beamercolorbox}[colsep=2.5pt]{upper separation line head}
     \end{beamercolorbox}
     
     % Section navigation bar
@@ -113,60 +113,6 @@
   }%
 }
 
-% =============================================================================
-% Frame Title Template
-% Customize the frametitle appearance
-% =============================================================================
-
-\defbeamertemplate*{frametitle}{Roma theme}[1][left]{
-  \vskip-\beamer@Roma@line
-  
-  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
-  
-  \newdimen\tempdima
-  \tempdima=\textwidth
-  \advance\tempdima by\beamer@leftmargin
-  \advance\tempdima by\beamer@rightmargin
-  
-  \vbox{}\vskip-0.5\beamer@leftmargin%
-  
-  \begin{beamercolorbox}[
-    sep=\beamer@leftmargin,
-    #1,
-    wd=\the\tempdima
-  ]{}
-    \usebeamerfont{frametitle}\usebeamercolor[bg]{framesubtitle}%
-    
-    \vbox{}\vskip0ex%
-    
-    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-    
-    \strut\insertframetitle\strut\par%
-    
-    \ifx\insertframesubtitle\@empty%
-    \else%
-      \usebeamerfont{framesubtitle}\usebeamercolor[bg]{framesubtitle}\insertframesubtitle\strut\par%
-    \fi%
-    
-    \vskip-1ex%
-    \if@tempswa\else\vskip-\beamer@leftmargin\fi
-  \end{beamercolorbox}%
-  
-  % Add title line if enabled
-  \def\beamer@Roma@truetext{true}%
-  \ifx\beamer@Roma@titleline\beamer@Roma@truetext%
-    \vskip-0.5\beamer@leftmargin%
-    \begin{beamercolorbox}[wd=\textwidth, ht=0.1ex, dp=0ex]{titleline}%
-      % Thin line below frametitle
-    \end{beamercolorbox}%
-  \fi
-}
-
-% =============================================================================
-% Frame Title Continuation Template
-% =============================================================================
-
-\defbeamertemplate*{frametitle continuation}{Roma theme}{(\insertcontinuationcount)}
 
 % =============================================================================
 % Apply Settings to All Modes

@@ -22,13 +22,66 @@
 \newlength{\beamer@Roma@internalnormalmargin}
 \setlength{\beamer@Roma@internalnormalmargin}{2\beamer@Roma@normalmargin}
 
-\setbeamersize{text margin left=\beamer@Roma@normalmargin}
-\setbeamersize{text margin right=\beamer@Roma@normalmargin}
+\setbeamersize{text margin left=1.1\beamer@Roma@internalnormalmargin}
+\setbeamersize{text margin right=0.6\beamer@Roma@internalnormalmargin}
 
 % Adjust left margins for nested lists
-\setlength\leftmargini{0.6\beamer@Roma@normalmargin}
-\setlength\leftmarginii{0.6\beamer@Roma@normalmargin}
-\setlength\leftmarginiii{0.6\beamer@Roma@normalmargin}
+\setlength\leftmargini{0.6\beamer@Roma@internalnormalmargin}
+\setlength\leftmarginii{0.6\beamer@Roma@internalnormalmargin}
+\setlength\leftmarginiii{0.6\beamer@Roma@internalnormalmargin}
+
+
+% =============================================================================
+% Frame Title Template
+% Customize the frametitle appearance
+% =============================================================================
+\defbeamertemplate*{frametitle}{Roma theme}[1][left]{ % Defines a new frametitle template for the "Roma theme" with an optional alignment parameter (default is 'left').
+
+  % Check if frametitle background color is empty; if not, apply nointerlineskip to avoid extra spacing
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  
+  \newdimen\tempdima % Defines a new dimension variable \tempdima for setting the width of the title box
+  \tempdima=\textwidth % Initializes \tempdima to the text width
+  \advance\tempdima by\beamer@leftmargin % Expands width by the left margin
+  \advance\tempdima by\beamer@rightmargin % Expands width by the right margin
+  
+  \vbox{}\vskip-0.5\beamer@leftmargin% % Moves the frametitle box upward by half the left margin
+
+  \begin{beamercolorbox}[sep=\beamer@leftmargin, #1, wd=\the\tempdima]{} % Starts a colored box with specified width and margin separation
+    \usebeamerfont{frametitle}\usebeamercolor[bg]{framesubtitle}% % Sets the font and background color for the frametitle
+    
+    
+    % Conditionally inserts additional formatting, depending on if a parameter is passed
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    
+    \strut\insertframetitle\strut\par% % Inserts the frametitle text with struts to ensure consistent height
+    
+    % Checks if framesubtitle is empty; if not, inserts it below frametitle
+    \ifx\insertframesubtitle\@empty%
+    \else%
+      \usebeamerfont{framesubtitle}\usebeamercolor[bg]{framesubtitle}\insertframesubtitle\strut\par%
+    \fi%
+    
+    \vskip+1.5ex% % Adds negative space below the frametitle, bringing other elements closer
+    \if@tempswa\else\vskip-\beamer@leftmargin\fi % Conditional negative space adjustment based on parameter presence
+  \end{beamercolorbox}%
+  
+  % Check if title line is enabled; if true, draw a thin line below frametitle
+  \def\beamer@Roma@truetext{true}% % Defines a true value for conditional title line display
+  \ifx\beamer@Roma@titleline\beamer@Roma@truetext%
+    \vskip-0.5\beamer@leftmargin% % Adds space above the title line
+    \begin{beamercolorbox}[wd=\textwidth, ht=0.1ex, dp=0ex]{titleline}% % Creates a very thin box for the line
+      % Thin line below frametitle (empty content within color box serves as the line)
+    \end{beamercolorbox}%
+  \fi
+}
+
+% =============================================================================
+% Frame Title Continuation Template
+% =============================================================================
+
+\defbeamertemplate*{frametitle continuation}{Roma theme}{(\insertcontinuationcount)}
+
 
 % =============================================================================
 % Logo Configuration
@@ -90,10 +143,10 @@
       
       % Red horizontal bar at the bottom
       \fill[redRoma] 
-        (0-\beamer@Roma@normalmargin,0) --
-        (0-\beamer@Roma@normalmargin,0.06\paperheight) --
-        (2\beamer@Roma@normalmargin,0.06\paperheight) --
-        (2\beamer@Roma@normalmargin,0.09\paperheight) --
+        (0,0) --
+        (0,0.06\paperheight) --
+        (0.9\beamer@Roma@internalnormalmargin,0.06\paperheight) --
+        (0.9\beamer@Roma@internalnormalmargin,0.09\paperheight) --
         (\paperwidth,0.09\paperheight) --
         (\paperwidth,0) --
         cycle;
