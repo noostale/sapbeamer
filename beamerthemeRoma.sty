@@ -1,0 +1,59 @@
+% =============================================================================
+% Roma Beamer Theme - Claudio Fiandrino, Reworked by Matteo Ipri, Modified by Emanuele Frasca
+% =============================================================================
+
+\mode<presentation> % Apply settings in presentation mode
+
+% -----------------------------------------------------------------------------
+% Required Packages
+% -----------------------------------------------------------------------------
+
+\RequirePackage{calc} % For length calculations
+\RequirePackage{tikz} % For drawing graphics
+
+% -----------------------------------------------------------------------------
+% Theme Options
+% -----------------------------------------------------------------------------
+
+\DeclareOptionBeamer{pageofpages}{
+  \PassOptionsToPackage{pageofpages=#1}{beamerouterthemeRoma}
+}
+\DeclareOptionBeamer{titleline}[false]{
+  \PassOptionsToPackage{titleline=#1}{beamerouterthemeRoma}
+}
+\ProcessOptionsBeamer
+
+% -----------------------------------------------------------------------------
+% Apply Inner, Outer, and Color Themes
+% -----------------------------------------------------------------------------
+
+\useinnertheme{Roma}
+\useoutertheme{Roma}
+\usecolortheme{Roma}
+
+% -----------------------------------------------------------------------------
+% Template Customizations
+% -----------------------------------------------------------------------------
+
+\setbeamertemplate{navigation symbols}{} % Remove navigation symbols
+\setbeamertemplate{blocks}[default] % Rounded blocks with shadows
+
+% set fonts
+\setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+
+% INCREASE CIRCLE SIZE
+
+
+% -----------------------------------------------------------------------------
+% Custom Commands
+% -----------------------------------------------------------------------------
+
+% Command to create a plain frame with the title page
+\newcommand\titlepageframe{
+  \begin{frame}[plain]
+    \titlepage
+  \end{frame}
+}
+
+\mode<all> % Apply settings to all modes

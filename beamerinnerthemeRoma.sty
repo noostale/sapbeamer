@@ -1,0 +1,158 @@
+% =============================================================================
+% Roma Beamer Theme - Original by Claudio Fiandrino
+% Reworked by Matteo Ipri, Modified by Emanuele Frasca
+% =============================================================================
+
+\mode<presentation> % Apply settings in presentation mode
+
+% =============================================================================
+% Margins Configuration
+% Define custom lengths and set text margins
+% =============================================================================
+
+\newlength{\beamer@Roma@mid}
+\setlength{\beamer@Roma@mid}{0.5\paperheight} % Midpoint at 50% of paper height
+
+\newlength{\beamer@Roma@sep}
+\setlength{\beamer@Roma@sep}{0.50\paperheight} % Separation at 45% of paper height
+
+\newlength{\beamer@Roma@normalmargin}
+\setlength{\beamer@Roma@normalmargin}{0.06\paperwidth} % 6% paper (left margin of first frame)
+
+\newlength{\beamer@Roma@internalnormalmargin}
+\setlength{\beamer@Roma@internalnormalmargin}{2\beamer@Roma@normalmargin}
+
+\setbeamersize{text margin left=\beamer@Roma@normalmargin}
+\setbeamersize{text margin right=\beamer@Roma@normalmargin}
+
+% Adjust left margins for nested lists
+\setlength\leftmargini{0.6\beamer@Roma@normalmargin}
+\setlength\leftmarginii{0.6\beamer@Roma@normalmargin}
+\setlength\leftmarginiii{0.6\beamer@Roma@normalmargin}
+
+% =============================================================================
+% Logo Configuration
+% Define and declare the logo image
+% =============================================================================
+
+\def\beamer@Roma@logo{logo-sap.png}
+\pgfdeclareimage[interpolate=true, width=4.5cm]{logo}{\beamer@Roma@logo}
+
+% =============================================================================
+% Background Design
+% Customize the background using TikZ
+% =============================================================================
+
+\setbeamertemplate{background}{
+  % Set the background image for the title page
+  \ifnum\thepage=1\relax
+    \begin{tikzpicture}
+      \useasboundingbox (0,0) rectangle (\paperwidth,\paperheight);
+      
+      % Upper background with blueRoma
+      \fill[blueRoma] 
+        (0-\beamer@Roma@normalmargin,\paperheight) --
+        (\paperwidth,\paperheight) --
+        (\paperwidth,\beamer@Roma@mid) --
+        (3\beamer@Roma@normalmargin,\beamer@Roma@mid) --
+        (3\beamer@Roma@normalmargin,\beamer@Roma@sep) --
+        (0-\beamer@Roma@normalmargin,\beamer@Roma@sep) --
+        cycle;
+      
+      % Lower background with redRoma
+      \fill[redRoma] 
+        (0,0) --
+        (0,\beamer@Roma@sep) --
+        (3\beamer@Roma@normalmargin,\beamer@Roma@sep) --
+        (3\beamer@Roma@normalmargin,\beamer@Roma@mid+0.10\paperheight) --
+        (\paperwidth,\beamer@Roma@mid+0.10\paperheight) --
+        (\paperwidth,0) --
+        cycle;
+      
+      % Position the logo
+      \pgftext[
+        at=\pgfpoint{1.25\beamer@Roma@normalmargin}{0.62\beamer@Roma@sep},
+        left, base
+      ]{\pgfuseimage{logo}};
+    \end{tikzpicture}
+  % Set the background image for all other pages
+  \else
+    \begin{tikzpicture}
+      \useasboundingbox (0,0) rectangle (\paperwidth,\paperheight);
+      
+      % White background
+      \fill[white, opacity=1] 
+        (0-\beamer@Roma@normalmargin,\paperheight) --
+        (\paperwidth,\paperheight) --
+        (\paperwidth,0) --
+        (0,0) --
+        cycle;
+      
+      % Red horizontal bar at the bottom
+      \fill[redRoma] 
+        (0-\beamer@Roma@normalmargin,0) --
+        (0-\beamer@Roma@normalmargin,0.06\paperheight) --
+        (2\beamer@Roma@normalmargin,0.06\paperheight) --
+        (2\beamer@Roma@normalmargin,0.09\paperheight) --
+        (\paperwidth,0.09\paperheight) --
+        (\paperwidth,0) --
+        cycle;
+    \end{tikzpicture}
+  \fi
+}
+
+% =============================================================================
+% Title Page Template
+% Customize the title page
+% =============================================================================
+
+\defbeamertemplate*{title page}{Roma}[1][]
+{
+  \vskip1em
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    sep=8pt,
+    leftskip=3\beamer@Roma@normalmargin,
+    #1
+  ]{title page header}
+    \usebeamerfont{title}\inserttitle\par
+    \ifx\insertsubtitle\@empty
+    \else
+      \usebeamerfont{subtitle}\insertsubtitle\par
+    \fi
+  \end{beamercolorbox}
+  
+  \vskip0.4em
+  
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    sep=8pt,
+    leftskip=3\beamer@Roma@normalmargin,
+    #1
+  ]{author}
+    \usebeamerfont{author}\insertauthor
+  \end{beamercolorbox}
+  
+  \vskip0.1em
+  
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    sep=8pt,
+    leftskip=3\beamer@Roma@normalmargin,
+    #1
+  ]{date}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+  
+  \vskip7cm
+}
+
+% =============================================================================
+% Items and Sections Templates
+% Customize list items and TOC entries
+% =============================================================================
+
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\mode<all> % Apply settings to all modes

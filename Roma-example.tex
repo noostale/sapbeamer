@@ -1,0 +1,141 @@
+\documentclass{beamer} % Beamer class for presentations
+
+% =============================================================================
+% Language and Encoding Configuration
+% =============================================================================
+
+\usepackage[italian]{babel} % Italian language support
+
+% Uncomment based on your compiler
+% For pdfLaTeX:
+\usepackage[utf8]{inputenc}   % UTF-8 encoding
+\usepackage[T1]{fontenc}      % Font encoding
+\usepackage{lmodern}          % Latin Modern font
+
+% For LuaLaTeX or XeLaTeX:
+%\usepackage{fontspec}        % Font selection and Unicode support
+
+
+
+% =============================================================================
+% Presentation Metadata
+% =============================================================================
+
+\title{I numeri primi sono infiniti}
+\author[Euclide]{Euclide di Roma\\\texttt{euclide@roma.edu}}
+\date[VII SINP]{VII Simposio Internazionale sui Numeri Primi}
+\institute[Roma]{Università di Roma}
+
+% =============================================================================
+% Theme Configuration
+% =============================================================================
+
+\usetheme[
+    pageofpages=/,      % String between current and total frames
+    titleline=true,      % Enable line below frame titles
+]{Roma}
+
+% =============================================================================
+% Theorem Styles
+% =============================================================================
+
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}
+
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}
+
+% =============================================================================
+% Begin Document
+% =============================================================================
+
+\begin{document}
+
+% =============================================================================
+% Title Page
+% =============================================================================
+
+\titlepageframe % Create title page frame
+
+% =============================================================================
+% Table of Contents
+% =============================================================================
+
+\begin{frame}
+  \frametitle{Piano della presentazione} % "Presentation Plan"
+  \tableofcontents % Display table of contents
+\end{frame}
+
+% =============================================================================
+% Automatic Outline at Section Start
+% =============================================================================
+
+\AtBeginSection[]{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection] % Highlight current section
+  \end{frame}
+}
+
+% =============================================================================
+% Section: Introduzione
+% =============================================================================
+
+\section{Introduzione}
+
+\begin{frame}
+  \frametitle{Che cosa sono i numeri primi?} % "What are prime numbers?"
+  \begin{definizione}
+    Un \alert{numero primo} è un intero $>1$ che ha esattamente due divisori positivi.
+  \end{definizione}
+\end{frame}
+
+% =============================================================================
+% Section: L'infinità dei primi
+% =============================================================================
+
+\section{L'infinità dei primi}
+\subsection{La dimostrazione}
+
+\begin{frame}
+  \frametitle{I numeri primi sono infiniti}
+  \framesubtitle{Ne diamo una dimostrazione diretta}
+  
+  \begin{teorema}
+    Non esiste un primo maggiore di tutti gli altri.
+  \end{teorema}
+  
+  \pause % Pause before showing proof steps
+  
+  \begin{proof}
+    \begin{enumerate}[<+->]
+      \item Sia dato un elenco di primi.
+      \item Sia $q$ il loro prodotto.
+      \item Allora $q+1$ è divisibile per un primo $p$ che non compare nell’elenco. \qedhere
+    \end{enumerate}
+  \end{proof}
+\end{frame}
+
+% =============================================================================
+% Section: Problemi aperti
+% =============================================================================
+
+\section{Problemi aperti}
+
+\begin{frame}
+  \frametitle{Che cosa c’è ancora da fare?}
+  
+  \begin{block}{Problemi risolti}
+    Quanti sono i numeri primi?
+  \end{block}
+  
+  \begin{alertblock}{Problemi aperti}
+    Un \alert{numero} pari $>2$ è sempre la somma di due primi?
+  \end{alertblock}
+\end{frame}
+
+% =============================================================================
+% End Document
+% =============================================================================
+
+\end{document}

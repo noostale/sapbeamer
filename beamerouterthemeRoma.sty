@@ -1,0 +1,175 @@
+% =============================================================================
+% Roma Beamer Theme - Original by Claudio Fiandrino
+% Reworked by Matteo Ipri, Modified by Emanuele Frasca
+% =============================================================================
+
+\mode<presentation> % Apply settings in presentation mode
+
+% =============================================================================
+% Options Configuration
+% Define custom options for page numbering and title line
+% =============================================================================
+
+% Initialize the string between current and total frame numbers
+\def\beamer@Roma@pageofpages{}
+
+% Define 'pageofpages' option with default value 'of'
+\DeclareOptionBeamer{pageofpages}{\def\beamer@Roma@pageofpages{#1}}
+\ExecuteOptionsBeamer{pageofpages=of}
+
+% Define 'titleline' option with default value 'true'
+\DeclareOptionBeamer{titleline}[false]{\def\beamer@Roma@titleline{#1}}
+\ExecuteOptionsBeamer{titleline=true}
+
+% Process all declared options
+\ProcessOptionsBeamer
+
+% =============================================================================
+% Lengths Configuration
+% Define custom lengths for header and footer elements
+% =============================================================================
+
+\newlength{\beamer@Roma@line}
+\setlength{\beamer@Roma@line}{0.02\paperheight} % Separation line height
+
+\newlength{\beamer@Roma@linebar}
+\setlength{\beamer@Roma@linebar}{0.03\paperheight} % Footer line bar height
+
+% =============================================================================
+% Header (Headline) Template
+% Customize the header appearance
+% =============================================================================
+
+\defbeamertemplate*{headline}{Roma theme}{
+  \ifnum\thepage>1\relax
+    % Upper separation line
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+    \end{beamercolorbox}
+    
+    % Section navigation bar
+    \begin{beamercolorbox}{section in head/foot}
+      \vskip2pt
+      \insertsectionnavigationhorizontal{\paperwidth}{}{}
+      \vskip2pt
+    \end{beamercolorbox}
+    
+    % Uncomment to include subsection navigation
+    % \ifbeamer@theme@subsection%
+    %   \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+    %   \end{beamercolorbox}
+    %   \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    %     \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+    %   \end{beamercolorbox}%
+    % \fi%
+    
+    % Lower separation line
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+    \end{beamercolorbox}
+  \fi
+}
+
+% =============================================================================
+% Footer (Footline) Template
+% Customize the footer appearance
+% =============================================================================
+
+\defbeamertemplate*{footline}{Roma theme}{
+  \leavevmode%
+  
+  % First line: Decorative lines
+  \hbox{%
+    \begin{beamercolorbox}[wd=.2\paperwidth, ht=\beamer@Roma@line, dp=0pt]{}
+      % Left decorative line (empty)
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.8\paperwidth, ht=\beamer@Roma@line, dp=0pt]{line}
+      % Right decorative line (empty)
+    \end{beamercolorbox}%
+  }%
+  
+  % Second line: Frame information
+  \hbox{%
+    \begin{beamercolorbox}[
+      leftskip=1.8\beamer@Roma@normalmargin,
+      rightskip=0.2\beamer@Roma@normalmargin,
+      wd=\paperwidth,
+      ht=\beamer@Roma@linebar,
+      dp=0pt,
+      sep=10pt
+    ]{linebar}
+      \tiny{%
+        \hskip5pt
+        \insertshorttitle\hfill
+        \insertshortdate\hfill
+        \insertframenumber\hskip1pt\beamer@Roma@pageofpages\hskip1pt\inserttotalframenumber
+      }%
+    \end{beamercolorbox}%
+  }%
+  
+  % Third line: Decorative line
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth, ht=\beamer@Roma@line, dp=0pt]{line}
+      % Bottom decorative line (empty)
+    \end{beamercolorbox}%
+  }%
+}
+
+% =============================================================================
+% Frame Title Template
+% Customize the frametitle appearance
+% =============================================================================
+
+\defbeamertemplate*{frametitle}{Roma theme}[1][left]{
+  \vskip-\beamer@Roma@line
+  
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  
+  \newdimen\tempdima
+  \tempdima=\textwidth
+  \advance\tempdima by\beamer@leftmargin
+  \advance\tempdima by\beamer@rightmargin
+  
+  \vbox{}\vskip-0.5\beamer@leftmargin%
+  
+  \begin{beamercolorbox}[
+    sep=\beamer@leftmargin,
+    #1,
+    wd=\the\tempdima
+  ]{}
+    \usebeamerfont{frametitle}\usebeamercolor[bg]{framesubtitle}%
+    
+    \vbox{}\vskip0ex%
+    
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    
+    \strut\insertframetitle\strut\par%
+    
+    \ifx\insertframesubtitle\@empty%
+    \else%
+      \usebeamerfont{framesubtitle}\usebeamercolor[bg]{framesubtitle}\insertframesubtitle\strut\par%
+    \fi%
+    
+    \vskip-1ex%
+    \if@tempswa\else\vskip-\beamer@leftmargin\fi
+  \end{beamercolorbox}%
+  
+  % Add title line if enabled
+  \def\beamer@Roma@truetext{true}%
+  \ifx\beamer@Roma@titleline\beamer@Roma@truetext%
+    \vskip-0.5\beamer@leftmargin%
+    \begin{beamercolorbox}[wd=\textwidth, ht=0.1ex, dp=0ex]{titleline}%
+      % Thin line below frametitle
+    \end{beamercolorbox}%
+  \fi
+}
+
+% =============================================================================
+% Frame Title Continuation Template
+% =============================================================================
+
+\defbeamertemplate*{frametitle continuation}{Roma theme}{(\insertcontinuationcount)}
+
+% =============================================================================
+% Apply Settings to All Modes
+% =============================================================================
+
+\mode<all>
