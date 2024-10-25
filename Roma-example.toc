@@ -1,6 +1,0 @@
-\babel@toc {italian}{}\relax 
-\babel@toc {italian}{}\relax 
-\beamer@sectionintoc {1}{Introduzione}{3}{0}{1}
-\beamer@sectionintoc {2}{L'infinità dei primi}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{La dimostrazione}{6}{0}{2}
-\beamer@sectionintoc {3}{Problemi aperti}{10}{0}{3}
