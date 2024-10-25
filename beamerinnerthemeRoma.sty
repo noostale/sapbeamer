@@ -196,6 +196,20 @@
   ]{date}
     \usebeamerfont{date}\insertdate
   \end{beamercolorbox}
+
+  % Add the institute information
+
+  \vskip0.1em
+
+  \begin{beamercolorbox}[
+      wd=\paperwidth,
+      sep=6pt,
+      leftskip=3\beamer@Roma@normalmargin,
+      #1
+    ]{institute}\textcolor{white}{\rmfamily \scriptsize \insertinstitute}
+  \end{beamercolorbox}
+  
+  
   
   \vskip7cm
 }
