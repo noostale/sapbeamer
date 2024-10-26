@@ -14,13 +14,13 @@
 \setlength{\beamer@Roma@mid}{0.5\paperheight} % Midpoint at 50% of paper height
 
 \newlength{\beamer@Roma@sep}
-\setlength{\beamer@Roma@sep}{0.50\paperheight} % Separation at 45% of paper height
+\setlength{\beamer@Roma@sep}{0.50\paperheight} % Separation at 50% of paper height
 
 \newlength{\beamer@Roma@normalmargin}
 \setlength{\beamer@Roma@normalmargin}{0.06\paperwidth} % 6% paper (left margin of first frame)
 
 \newlength{\beamer@Roma@internalnormalmargin}
-\setlength{\beamer@Roma@internalnormalmargin}{2\beamer@Roma@normalmargin}
+\setlength{\beamer@Roma@internalnormalmargin}{2\beamer@Roma@normalmargin} % 12% paper (left margin of nested frames)
 
 \setbeamersize{text margin left=1.1\beamer@Roma@internalnormalmargin}
 \setbeamersize{text margin right=0.6\beamer@Roma@internalnormalmargin}
@@ -199,15 +199,15 @@
 
   % Add the institute information
 
-  \vskip0.1em
+  \vskip 0.1em
 
-  \begin{beamercolorbox}[
-      wd=\paperwidth,
-      sep=6pt,
-      leftskip=3\beamer@Roma@normalmargin,
-      #1
-    ]{institute}\textcolor{white}{\rmfamily \scriptsize \insertinstitute}
+  \begin{beamercolorbox}[wd=\paperwidth, sep=6pt, leftskip=3\beamer@Roma@normalmargin]
+    {institute} \textcolor{white}{\rmfamily \scriptsize \insertinstitute}
   \end{beamercolorbox}
+
+  % Add the institute information but using parbox for multiple lines
+
+  
   
   
   
